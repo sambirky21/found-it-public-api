@@ -1,0 +1,162 @@
+[
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 1,
+    "fields": {
+        "item_id": 1,
+        "category_id": 1
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 2,
+    "fields": {
+        "item_id": 2,
+        "category_id": 1
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 3,
+    "fields": {
+        "item_id": 3,
+        "category_id": 1
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 4,
+    "fields": {
+        "item_id": 4,
+        "category_id": 2
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 5,
+    "fields": {
+        "item_id": 5,
+        "category_id": 2
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 6,
+    "fields": {
+        "item_id": 6,
+        "category_id": 2
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 7,
+    "fields": {
+        "item_id": 7,
+        "category_id": 3
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 8,
+    "fields": {
+        "item_id": 8,
+        "category_id": 3
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 9,
+    "fields": {
+        "item_id": 9,
+        "category_id": 3
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 10,
+    "fields": {
+        "item_id": 10,
+        "category_id": 4
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 11,
+    "fields": {
+        "item_id": 11,
+        "category_id": 4
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 12,
+    "fields": {
+        "item_id": 12,
+        "category_id": 5
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 13,
+    "fields": {
+        "item_id": 13,
+        "category_id": 6
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 14,
+    "fields": {
+        "item_id": 14,
+        "category_id": 5
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 15,
+    "fields": {
+        "item_id": 15,
+        "category_id": 6
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 16,
+    "fields": {
+        "item_id": 16,
+        "category_id": 7
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 17,
+    "fields": {
+        "item_id": 17,
+        "category_id": 7
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 18,
+    "fields": {
+        "item_id": 18,
+        "category_id": 8
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 19,
+    "fields": {
+        "item_id": 19,
+        "category_id": 1
+        }
+    },
+    {
+    "model": "founditapi.categoryitem",
+    "pk": 20,
+    "fields": {
+        "item_id": 20,
+        "category_id": 2
+        }
+    }
+]
