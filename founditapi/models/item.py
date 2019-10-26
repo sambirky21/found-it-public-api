@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from .categoryitem import Category
 
 """
 Author: Sam Birky
@@ -17,3 +18,4 @@ class Item(models.Model):
     quantity = models.IntegerField()
     location = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)

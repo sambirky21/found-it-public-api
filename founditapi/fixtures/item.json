@@ -4,6 +4,7 @@
         "pk": 1,
         "fields": {
             "user_id": 1,
+            "category_id": 1,
             "name": "Cumin",
             "description": "For my favorite dish... cumin chicken, quantity by tablespoons",
             "quantity": 6,
@@ -16,6 +17,7 @@
         "pk": 2,
         "fields": {
             "user_id": 1,
+            "category_id": 1,
             "name": "Sugar",
             "description": "For baking... quantity by cups",
             "quantity": 6,
@@ -28,6 +30,7 @@
         "pk": 3,
         "fields": {
             "user_id": 1,
+            "category_id": 1,
             "name": "Brown Sugar",
             "description": "For baking... quanity by cups",
             "quantity": 6,
@@ -40,6 +43,7 @@
         "pk": 4,
         "fields": {
             "user_id": 1,
+            "category_id": 2,
             "name": "Power Drill",
             "description": "Nifty drill...",
             "quantity": 1,
@@ -52,6 +56,7 @@
         "pk": 5,
         "fields": {
             "user_id": 1,
+            "category_id": 2,
             "name": "9 Inch Nails",
             "description": "I like that one song...",
             "quantity": 500,
@@ -64,6 +69,7 @@
         "pk": 6,
         "fields": {
             "user_id": 1,
+            "category_id": 2,
             "name": "Leveler",
             "description": "For my picture hanging.",
             "quantity": 1,
@@ -76,6 +82,7 @@
         "pk": 7,
         "fields": {
             "user_id": 1,
+            "category_id": 3,
             "name": "Ibuprofen",
             "description": "Makes the headache stop, quanity by bottles",
             "quantity": 2,
@@ -88,6 +95,7 @@
         "pk": 8,
         "fields": {
             "user_id": 1,
+            "category_id": 3,
             "name": "Tums",
             "description": "Acid relief, quantity by bottles",
             "quantity": 2,
@@ -100,6 +108,7 @@
         "pk": 9,
         "fields": {
             "user_id": 1,
+            "category_id": 3,
             "name": "Lactaid",
             "description": "For pizza Friday",
             "quantity": 1,
@@ -112,6 +121,7 @@
         "pk": 10,
         "fields":{
             "user_id": 1,
+            "category_id": 4,
             "name": "Suncreen 30",
             "description": "For the summer days",
             "quantity": 2,
@@ -124,6 +134,7 @@
         "pk": 11,
         "fields":{
             "user_id": 1,
+            "category_id": 4,
             "name": "Wasp Spray",
             "description": "Keep them away.",
             "quantity": 1,
@@ -136,6 +147,7 @@
         "pk": 12,
         "fields":{
             "user_id": 1,
+            "category_id": 5,
             "name": "Freon",
             "description": "Need the cool air inside my car.",
             "quantity": 1,
@@ -148,6 +160,7 @@
         "pk": 13,
         "fields":{
             "user_id": 1,
+            "category_id": 6,
             "name": "Post It Notes",
             "description": "Yellow, Blue, Red, Pink",
             "quantity": 4,
@@ -160,6 +173,7 @@
         "pk": 14,
         "fields":{
             "user_id": 1,
+            "category_id": 5,
             "name": "Windshield Wiper Fluid",
             "description": "When I'm lazy with a window scraper.",
             "quantity": 6,
@@ -172,6 +186,7 @@
         "pk": 15,
         "fields": {
             "user_id": 1,
+            "category_id": 6,
             "name": "Staples",
             "description": "For various papers being put together",
             "quantity": 200,
@@ -184,6 +199,7 @@
         "pk": 16,
         "fields": {
             "user_id": 1,
+            "category_id": 7,
             "name": "Magic Erasers",
             "description": "For those stubborns stains in the tub",
             "quantity": 8,
@@ -196,6 +212,7 @@
         "pk": 17,
         "fields": {
             "user_id": 1,
+            "category_id": 7,
             "name": "Bleach",
             "description": "Be careful",
             "quantity": 1,
@@ -208,6 +225,7 @@
         "pk": 18,
         "fields": {
             "user_id": 1,
+            "category_id": 8,
             "name": "HDMI to Thunderbolt Adapter",
             "description": "For my DVDs to play through my old MacBook Pro",
             "quantity": 1,
@@ -220,6 +238,7 @@
         "pk": 19,
         "fields": {
             "user_id": 1,
+            "category_id": 1,
             "name": "Tea Kettle",
             "description": "For sick days",
             "quantity": 1,
@@ -232,6 +251,7 @@
         "pk": 20,
         "fields": {
             "user_id": 1,
+            "category_id": 2,
             "name": "Adhesive Hook Strips",
             "description": "For String Lights",
             "quantity": 8,
