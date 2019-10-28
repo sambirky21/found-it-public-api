@@ -6,12 +6,11 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from founditapi.models import Item, Category, CategoryItem
-from django.contrib.auth.models import User
+from founditapi.models import Item, Category, CategoryItem, Organizer
 
 """HyperlinkedModelSerializer class
 Author: Sam Birky
-Purpose:  Allows user to communicate with the Found It!
+Purpose:  Allows organizer to communicate with the Found It!
 database to GET PUT POST and DELETE by using hyperlinking
 between entities. Like the Model Serializer, it implements
 create() and update() methods by default.
@@ -32,7 +31,7 @@ class ItemSerializer(serializers.HyperlinkedModelSerializer):
             lookup_field='id'
         )
         fields = ('id', 'url', 'name', 'description', 'quantity',
-                  'location', 'created_at', 'category')
+                  'location', 'created_at', 'category', 'organizer')
         depth = 2
 
 
@@ -46,8 +45,9 @@ class Items(ViewSet):
             Response -- JSON serialized Item instance
         """
         new_item = Item()
+
         new_item.name = request.data["name"]
-        new_item.user = request.data["user"]
+        new_item.organizer = Organizer.objects.get(user=request.auth.user)
         new_item.description = request.data["description"]
         new_item.quantity = request.data["quantity"]
         new_item.created_at = request.data["created_at"]
@@ -107,62 +107,10 @@ class Items(ViewSet):
         Returns:
             Response -- JSON serialized list of items
         """
-        items = Item.objects.all()
-        item_list = list()
+        organizer = Organizer.objects.get(user=request.auth.user)
+        items = Item.objects.fileter(organizer=organizer)
 
         serializer = ItemSerializer(
             items, many=True, context={'request': request})
 
         return Response(serializer.data)
-
-        # support filtering by category
-        # category = self.request.query_params.get('category', None)
-        # if category is not None:
-        #     items = items.filter(category_item_id=category)
-        #     for item in items:
-        #         if item.quantity > 0:
-        #             item_list.append(item)
-        #     items = item_list
-
-        # support filtering by quantity
-        # quantity = self.request.query_params.get('quantity', None)
-        # if quantity is not None:
-        #     quantity = int(quantity)
-        #     length = len(products)
-        #     new_products = list()
-        #     count = 0
-        #     for product in products:
-        #         count += 1
-        #         if count - 1 + quantity >= length:
-        #             new_products.append(product)
-        #             if count == length:
-        #                 products = new_products
-        #                 break
-
-        # location = self.request.query_params.get('location', None)
-        # if location is not None:
-        #     products = products.filter(location=location)
-        #     for product in products:
-        #         if product.quantity > 0:
-        #             product_list.append(product)
-        #     products = product_list
-
-        # aproduct = list(products)[0]
-
-        # serializer = ProductSerializer(
-        #     products, many=True, context={'request': request})
-
-        # return Response(serializer.data)
-
-    # Custom Action that supports filtering products by customer by creating a new route
-    # @action(methods=['get'], detail=False)
-    # def myproduct(self, request):
-
-    #     try:
-    #         customer = Customer.objects.get(user=request.auth.user)
-    #         products_of_customer = Product.objects.filter(customer=customer)
-    #     except Product.DoesNotExist as ex:
-    #         return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-
-    #     serializer = ProductSerializer(products_of_customer, many=True, context={'request': request})
-    #     return Response(serializer.data)

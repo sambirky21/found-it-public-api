@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .categoryitem import Category
+from .organizer import Organizer
 
 """
 Author: Sam Birky
@@ -12,7 +13,7 @@ Method: None
 
 class Item(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    organizer = models.ForeignKey(Organizer, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
     quantity = models.IntegerField()
