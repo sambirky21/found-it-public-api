@@ -107,8 +107,8 @@ class Items(ViewSet):
         Returns:
             Response -- JSON serialized list of items
         """
-        organizer = Organizer.objects.get(user=request.auth.user)
-        items = Item.objects.fileter(organizer=organizer)
+        # organizer = Organizer.objects.get(user=request.auth.user)
+        items = Item.objects.all()
 
         serializer = ItemSerializer(
             items, many=True, context={'request': request})

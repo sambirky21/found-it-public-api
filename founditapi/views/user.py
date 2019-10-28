@@ -1,61 +1,68 @@
-from django.http import HttpResponseServerError
-from rest_framework.viewsets import ViewSet
-from rest_framework.response import Response
-from rest_framework import serializers
-from rest_framework import status
+# from django.http import HttpResponseServerError
+# from rest_framework.viewsets import ViewSet
+# from rest_framework.response import Response
+# from rest_framework import serializers
+# from rest_framework import status
+# from django.contrib.auth.models import User
+
+
+# class UserSerializer(serializers.HyperlinkedModelSerializer):
+#     """JSON serializer for Users
+#     Author: Sam Silver
+#     Arguments:c
+#         serializers
+#     """
+#     class Meta:
+#         model = User
+#         url = serializers.HyperlinkedIdentityField(
+#             view_name='user',
+#             lookup_field = 'id'
+#         )
+#         fields = ('id', 'url', 'username', 'password', 'first_name', 'last_name', 'email', 'is_active', 'date_joined')
+
+
+# class Users(ViewSet):
+#     """Users for Found It!
+#     Author: Sam Birky
+#     Purpose: Allows user to communicate with the Found It! database to GET PUT POST and DELETE Users.
+#     Methods: GET PUT(id) POST
+# """
+
+
+#     def retrieve(self, request, pk=None):
+#         """Handle GET requests for single customer
+#         Author: Sam Birky
+#         Purpose: Allows a user to communicate with the Found It! database to retrieve  one user
+#         Methods:  GET
+#         Returns:
+#             Response -- JSON serialized customer instance
+#         """
+#         try:
+#             user = User.objects.get(pk=pk)
+#             serializer = UserSerializer(user, context={'request': request})
+#             return Response(serializer.data)
+#         except Exception as ex:
+#             return HttpResponseServerError(ex)
+
+
+
+#     def list(self, request):
+
+#         """Handle GET requests to customers resource
+#         Author: Sam Birky
+#         Purpose: Allows user to communicate with the Found It! database to retrieve  list of users
+#         Methods:  GET
+#         Returns:
+#             Response -- JSON serialized list of park areas
+#         """
+#         users = User.objects.all()
+#         serializer = UserSerializer(
+#             users, many=True, context={'request': request})
+#         return Response(serializer.data)
+
 from django.contrib.auth.models import User
+from rest_framework import viewsets
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    """JSON serializer for Users
-    Author: Sam Silver
-    Arguments:c
-        serializers
-    """
-    class Meta:
-        model = User
-        url = serializers.HyperlinkedIdentityField(
-            view_name='user',
-            lookup_field = 'id'
-        )
-        fields = ('id', 'url', 'username', 'password', 'first_name', 'last_name', 'email', 'is_active', 'date_joined')
-
-
-class Users(ViewSet):
-    """Users for Found It!
-    Author: Sam Birky
-    Purpose: Allows user to communicate with the Found It! database to GET PUT POST and DELETE Users.
-    Methods: GET PUT(id) POST
-"""
-
-
-    def retrieve(self, request, pk=None):
-        """Handle GET requests for single customer
-        Author: Sam Birky
-        Purpose: Allows a user to communicate with the Found It! database to retrieve  one user
-        Methods:  GET
-        Returns:
-            Response -- JSON serialized customer instance
-        """
-        try:
-            user = User.objects.get(pk=pk)
-            serializer = UserSerializer(user, context={'request': request})
-            return Response(serializer.data)
-        except Exception as ex:
-            return HttpResponseServerError(ex)
-
-
-
-    def list(self, request):
-
-        """Handle GET requests to customers resource
-        Author: Sam Birky
-        Purpose: Allows user to communicate with the Found It! database to retrieve  list of users
-        Methods:  GET
-        Returns:
-            Response -- JSON serialized list of park areas
-        """
-        users = User.objects.all()
-        serializer = UserSerializer(
-            users, many=True, context={'request': request})
-        return Response(serializer.data)
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()

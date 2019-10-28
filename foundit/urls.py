@@ -8,6 +8,7 @@ router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'items', Items, 'item')
 router.register(r'categories', Categories, 'category')
 router.register(r'organizers', Organizers, 'organizer')
+router.register(r'users', UserViewSet, 'user')
 
 urlpatterns = [
     url(r'^', include(router.urls)),
