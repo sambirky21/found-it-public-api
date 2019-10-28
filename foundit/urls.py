@@ -7,7 +7,7 @@ from founditapi.views import *
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'items', Items, 'item')
 router.register(r'categories', Categories, 'category')
-# router.register(r'categoryitems', CategoryItems, 'categoryitem')
+router.register(r'organizers', Organizers, 'organizer')
 
 urlpatterns = [
     url(r'^', include(router.urls)),
