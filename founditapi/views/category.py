@@ -5,6 +5,8 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from founditapi.models import Category
+from founditapi.models import Item
+from founditapi.models import Organizer
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
@@ -24,7 +26,7 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
             view_name='Category',
             lookup_field='pk'
         )
-        fields = ('id', 'url', 'name')
+        fields = ('id', 'url', 'name', 'items')
         depth = 2
 
 class Categories(ViewSet):
@@ -36,7 +38,11 @@ class Categories(ViewSet):
         Returns:
             Response -- JSON serialized list of categories
         """
+        # items = Item.objects.get(user=request.auth.user)
         categories = Category.objects.all()
+        # items = Category.item_set.get(organizer=request.auth.user)
+        organizer = Organizer.objects.get(user=request.auth.user)
+        categories = categories.filter(items__organizer=organizer)
         serializer = CategorySerializer(
             categories,
             many=True,

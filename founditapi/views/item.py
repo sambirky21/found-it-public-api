@@ -107,8 +107,19 @@ class Items(ViewSet):
         Returns:
             Response -- JSON serialized list of items
         """
-        # organizer = Organizer.objects.get(user=request.auth.user)
-        items = Item.objects.all()
+        organizer = Organizer.objects.get(user=request.auth.user)
+        items = Item.objects.filter(organizer=organizer)
+
+        item_list = list()
+
+        # support filtering by category
+        category = self.request.query_params.get('category', None)
+        if category is not None:
+            items = items.filter(category_id=category)
+            for item in items:
+                if item.quantity > 0:
+                    item_list.append(item)
+            items = item_list
 
         serializer = ItemSerializer(
             items, many=True, context={'request': request})
