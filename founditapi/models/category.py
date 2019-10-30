@@ -11,3 +11,12 @@ from django.db import models
 class Category(models.Model):
 
     name = models.CharField(max_length=50)
+    __organizer_items = list()
+
+    @property
+    def organizer_items(self):
+        return self.__organizer_items
+
+    @organizer_items.setter
+    def organizer_items(self, value):
+        self.__organizer_items = value

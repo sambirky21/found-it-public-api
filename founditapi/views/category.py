@@ -9,6 +9,20 @@ from founditapi.models import Item
 from founditapi.models import Organizer
 
 
+class CategoryItemSerializer(serializers.HyperlinkedModelSerializer):
+    """JSON serializer for items
+    Arguments:
+        serializers.HyperlinkedModelSerializer
+    """
+
+    class Meta:
+        model = Item
+        url = serializers.HyperlinkedIdentityField(
+            view_name='item',
+            lookup_field='id'
+        )
+        fields = ('id', 'name')
+
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
 
     # Author: Sam Birky
@@ -24,9 +38,9 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
         model = Category
         url = serializers.HyperlinkedIdentityField(
             view_name='Category',
-            lookup_field='pk'
+            lookup_field='id'
         )
-        fields = ('id', 'url', 'name', 'items')
+        fields = ('id', 'url', 'name', 'organizer_items')
         depth = 2
 
 class Categories(ViewSet):
@@ -39,16 +53,32 @@ class Categories(ViewSet):
             Response -- JSON serialized list of categories
         """
         # items = Item.objects.get(user=request.auth.user)
+        my_categories = []
+
         categories = Category.objects.all()
-        # items = Category.item_set.get(organizer=request.auth.user)
         organizer = Organizer.objects.get(user=request.auth.user)
-        categories = categories.filter(items__organizer=organizer)
-        serializer = CategorySerializer(
-            categories,
-            many=True,
-            context={'request': request}
-        )
-        return Response(serializer.data)
+        for category in categories:
+            items = Item.objects.filter(category=category, organizer=organizer)
+            json_items = CategoryItemSerializer(items, many=True, context={'request': request})
+
+            category.organizer_items = json_items.data
+            serializer = CategorySerializer(
+                category,
+                many=False,
+                context={'request': request}
+            )
+            my_categories.append(serializer.data)
+
+        # categories = Category.objects.values_list('name','items__name').filter(items__organizer=organizer)
+        # print(categories.query.__str__())
+        # items = Category.item_set.get(organizer=request.auth.user)
+        # categories = categories.filter(items__organizer=organizer)
+        # serializer = CategorySerializer(
+        #     categories,
+        #     many=True,
+        #     context={'request': request}
+        # )
+        return Response(my_categories)
 
     def create(self, request):
         """Handle POST operations
