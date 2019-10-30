@@ -13,10 +13,10 @@ Method: None
 
 class Item(models.Model):
 
-    organizer = models.ForeignKey(Organizer, on_delete=models.CASCADE)
+    organizer = models.ForeignKey(Organizer, on_delete=models.CASCADE, related_name='items')
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
     quantity = models.IntegerField()
     location = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
+    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, related_name='items')
