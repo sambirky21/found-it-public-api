@@ -121,6 +121,15 @@ class Items(ViewSet):
                     item_list.append(item)
             items = item_list
 
+        # support filtering by name
+        name = self.request.query_params.get('name', None)
+        if name is not None:
+            items = items.filter(name=name)
+            for item in items:
+                if item.quantity > 0:
+                    item_list.append(item)
+            items = item_list
+
         serializer = ItemSerializer(
             items, many=True, context={'request': request})
 
